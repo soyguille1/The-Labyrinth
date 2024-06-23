@@ -22,8 +22,8 @@ struct Cell {
 
 // Estructura Node para almacenar información de la posición y el camino en el laberinto
 struct Node {
-    int x, y; //Representa las coordenadas del nodo en el laberinto
-    vector<Cell> path;
+    int x, y; //(3,3) se utiliza para almacenar información más compleja que una sola celda del nodo en el laberinto 
+    vector<Cell> path;//(1, 1) -> (1, 2) -> (2, 2) -> (3, 2) -> (3, 3)
 };
 
 // Función para generar un laberinto
@@ -133,7 +133,7 @@ void solveMazeStepByStep(const vector<vector<char>>& maze) {
         }
     }
 
-    cout << "No se encontró solución.\n";
+    cout << "No se encontro solución.\n";
 }
 
 // Función para obtener el tamaño del laberinto del usuario
@@ -153,8 +153,8 @@ void getUserInput(int& width, int& height) {
 
 // Función para imprimir los tiempos de generación y solución del laberinto
 void printTime(duration<double> genTime, duration<double> solveTime) {
-    cout << "Tiempo de generación del laberinto: " << genTime.count() << " segundos." << endl;
-    cout << "Tiempo de resolución del laberinto: " << solveTime.count() << " segundos." << endl;
+    cout << "Tiempo de generacion del laberinto: " << genTime.count() << " segundos." << endl;
+    cout << "Tiempo de resolucion del laberinto: " << solveTime.count() << " segundos." << endl;
 }
 
 int main() {
