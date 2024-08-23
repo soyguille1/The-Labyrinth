@@ -1,11 +1,11 @@
-#include <iostream> //Libreria para entrada y salida de datos
-#include <vector> //Libreria  para vectores
-#include <stack> //Libreria para contenedor de pilas (plato)
-#include <queue> //Libreria para contenedor de Colas (parque)
-#include <random> //Libreria para aleatorizar numeros
-#include <chrono> //Libreria para controlar el tiempo
-#include <thread> //Libreria para incluir hilos
-#include <algorithm> //Libreria para utilizar algoritmos comunes para ordear,buscar,manipilar y processar datos como arreglos,vectores y listas
+#include <iostream> 
+#include <vector> 
+#include <stack>
+#include <queue>
+#include <random>
+#include <chrono> 
+#include <thread>
+#include <algorithm>
 
 using namespace std;
 using namespace chrono;
@@ -17,16 +17,14 @@ const char ENTRANCE = 'E';
 const char EXIT = 'S';
 
 struct Cell {
-    int x, y; // representan las coordenadas de una celda en el laberinto 
+    int x, y; 
 };
 
-// Estructura Node para almacenar información de la posición y el camino en el laberinto
 struct Node {
-    int x, y; //(3,3) se utiliza para almacenar información más compleja que una sola celda del nodo en el laberinto 
+    int x, y; 
     vector<Cell> path;//(1, 1) -> (1, 2) -> (2, 2) -> (3, 2) -> (3, 3)
 };
 
-// Función para generar un laberinto
 vector<vector<char>> generateMaze(int width, int height) {
     vector<vector<char>> maze(height, vector<char>(width, WALL));
     stack<Cell> stack;
@@ -63,8 +61,6 @@ vector<vector<char>> generateMaze(int width, int height) {
     maze[height - 1][width - 2] = PATH;  // Salida
     return maze;
 }
-
-// Función para imprimir el laberinto
 void printMaze(const vector<vector<char>>& maze) {
     for (const auto& row : maze) {
         for (char cell : row) {
@@ -74,7 +70,6 @@ void printMaze(const vector<vector<char>>& maze) {
     }
 }
 
-// Función para imprimir el laberinto con la solución parcial
 void printSolutionStep(const vector<vector<char>>& maze, const vector<Cell>& path, int step) {
     vector<vector<char>> mazeCopy = maze;
     for (int i = 0; i <= step; ++i) {
@@ -92,7 +87,6 @@ void printSolutionStep(const vector<vector<char>>& maze, const vector<Cell>& pat
     }
 }
 
-// Función para resolver el laberinto paso a paso
 void solveMazeStepByStep(const vector<vector<char>>& maze) {
     int width = maze[0].size(), height = maze.size();
     vector<vector<bool>> visited(height, vector<bool>(width, false));
@@ -136,7 +130,6 @@ void solveMazeStepByStep(const vector<vector<char>>& maze) {
     cout << "No se encontro solución.\n";
 }
 
-// Función para obtener el tamaño del laberinto del usuario
 void getUserInput(int& width, int& height) {
     cout << "Ingrese el ancho del laberinto (número de columnas, preferiblemente impar): ";
     cin >> width;
@@ -151,7 +144,6 @@ void getUserInput(int& width, int& height) {
     }
 }
 
-// Función para imprimir los tiempos de generación y solución del laberinto
 void printTime(duration<double> genTime, duration<double> solveTime) {
     cout << "Tiempo de generacion del laberinto: " << genTime.count() << " segundos." << endl;
     cout << "Tiempo de resolucion del laberinto: " << solveTime.count() << " segundos." << endl;
